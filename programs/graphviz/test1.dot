@@ -1,0 +1,30 @@
+digraph mizugame_states {
+  one    [label = "InitialState 5[0],7[0]]"]
+  two    [label = "5[5],7[0]"]
+  three  [label = "5[0],7[7]"]
+  four   [label = "5[5],7[7]"]
+  five   [label = "5[0],7[5]"]
+  six    [label = "5[5],7[2]"]
+  seven  [label = "5[5],7[7]"]
+  eight  [label = "5[5],7[5]"]
+  nine   [label = "5[0],7[2]"]
+  ten    [label = "5[3],7[7]"]
+  eleven [label = "5[2],7[0]"]
+  twelve [label = "5[2],7[7]"]
+  thirt  [label = "5[5],7[4]"]
+  fourt  [label = "TargetState 5[0],7[4]"]
+
+  one -> two;
+  one -> three;
+  two -> four;
+  two -> five;
+  three -> six;
+  three -> seven;
+  five -> eight;
+  six -> nine;
+  eight -> ten;
+  nine -> eleven;
+  eleven -> twelve;
+  twelve -> thirt;
+  thirt -> fourt;
+}

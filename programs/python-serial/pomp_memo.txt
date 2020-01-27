@@ -1,0 +1,24 @@
+□自動で動かす時もON/OFFは手動（タッチパネルで操作）を想定
+	○機能H30を0->1に変更すること（この変更をするとダイヤルを手動で回してもHzが変わらなくなる）
+	○ONした後にset_hz()で周波数を変更
+□現状のポンプの設定だと10~60Hzの間でしか変更できない。
+□ハードウェアの接続は以下
+	○必要なもの
+	USBtoSerial(http://akizukidenshi.com/catalog/g/gM-05841/)
+	RS485トランシーバー(http://ec.akizukidenshi.com/catalog/g/gI-07430/)
+	RJ45コネクタ(http://ec.akizukidenshi.com/catalog/g/gK-05404/)
+	○接続
+UtoS  RS485T&R RJ45
+RXD(黄)---1(R)  
+GND(黒)---2(!RE)
+CTS(茶)---3(DE)
+TXD(橙)---4(D)
+GND(黒)---5(GND)
+　　　　　　    6(A)-----P4
+　　　　　　    7(B)-----P5
+5V(赤)----8(VCC)
+
+□RJ45コネクタだがEthernetではない、PCのEthernetの口に繋がないように
+
+
+

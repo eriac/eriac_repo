@@ -1,0 +1,12 @@
+digraph sample04_1 {
+  subgraph cluster_0 {
+    a -> b;
+    label=“cluster0”;
+  }
+  subgraph cluster_1 {
+    x -> y -> z;
+    label=“cluster1”;
+  }
+  a -> x;
+ 
+}

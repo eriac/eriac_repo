@@ -1,0 +1,33 @@
+digraph graph_name {
+ // graph setting
+ graph [
+     rankdir=LR; // left to right (default is TB)
+ ]
+
+ // nodes (楕円の枠を作る)
+ "/joint_state_publisher";
+ "/move_group";
+ "/virtual_joint_broadcaster_0";
+
+ // topics (長方形の枠を作る)
+ "/joint_states"[shape=box];
+ "/move_group/display_planned_path"[shape=box];
+ "/tf"[shape=box];
+ "/planning_scene_world"[shape=box];
+ "/planning_scene"[shape=box];
+
+ // link (矢印を作る)
+ "/joint_state_publisher" -> "/joint_states";
+ "/joint_states" -> "/robot_state_publisher";
+ "/joint_states" -> "/move_group";
+ "/virtual_joint_broadcaster_0" -> "/tf"
+ "/robot_state_publisher" -> "/tf";
+ "/tf" -> "/move_group";
+ "/planning_scene" -> "/move_group";
+ "/planning_scene_world" -> "/move_group";
+ // 名前空間（長方形で囲む）
+  subgraph cluster_name {
+    label = "move_group";
+    "/move_group" -> "/move_group/display_planned_path";
+  }
+}
