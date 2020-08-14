@@ -1,0 +1,6 @@
+# component
+
+```plantuml
+a --> b
+```
+
