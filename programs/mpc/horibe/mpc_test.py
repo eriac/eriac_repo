@@ -11,6 +11,56 @@ https://myenigma.hatenablog.com/entry/2017/02/07/084922
 https://qiita.com/taka_horibe/items/47f86e02e2db83b0c570
 """
 
+class modeling_tool:
+    def __init__(self, A, B, N, Q, R, umax=None, umin=None, xmin=None, xmax=None):
+        """
+        solve MPC with modeling tool for test
+        """
+        (nx, nu) = B.shape
+
+        # mpc calculation
+        self.x = cvxpy.Variable((nx, N + 1))
+        self.u = cvxpy.Variable((nu, N))
+
+        costlist = 0.0
+        constrlist = []
+
+        self.r = Parameter(nx, N)
+        self.x0 = Parameter(nx, 1)
+
+        for t in range(N):
+            costlist += 0.5 * cvxpy.quad_form(self.x[:, t]-self.r[:,t], Q)
+            costlist += 0.5 * cvxpy.quad_form(self.u[:, t], R)
+
+            constrlist += [x[:, t + 1] == A @ x[:, t] + B @ self.u[:, t]]
+
+            if xmin is not None:
+                constrlist += [self.x[:, t] >= xmin[:, 0]]
+            if xmax is not None:
+                constrlist += [self.x[:, t] <= xmax[:, 0]]
+
+        costlist += 0.5 * cvxpy.quad_form(x[:, N], Q)  # terminal cost
+
+        if xmin is not None:
+            constrlist += [self.x[:, N] >= xmin[:, 0]]
+        if xmax is not None:
+            constrlist += [self.x[:, N] <= xmax[:, 0]]
+
+        if umax is not None:
+            constrlist += [self.u <= umax]  # input constraints
+        if umin is not None:
+            constrlist += [self.u >= umin]  # input constraints
+
+        constrlist += [self.x[:, 0] == self.x0[:, 0]]  # inital state constraints
+
+        self.prob = cvxpy.Problem(cvxpy.Minimize(costlist), constrlist)
+
+    def solve(x0, r):
+        self.x0.value = x0
+        self.r = r
+        self.prob.solve()
+        return self.x.value, self.u.value
+
 def use_modeling_tool(A, B, N, Q, R, x0, r, umax=None, umin=None, xmin=None, xmax=None):
     """
     solve MPC with modeling tool for test
