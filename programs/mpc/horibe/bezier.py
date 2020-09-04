@@ -47,14 +47,24 @@ class Bezier():
         R = (self.dx*self.ddy - self.ddx*self.dy) / ((self.dx**2 + self.dy**2)**1.5)
 
         self.dax.set_xlim(-0.1 , 1.5)
-        self.dax.set_ylim(-1.0 , 40)
+        # self.dax.set_ylim(-1.0 , 40)
         dp.append(0.0)
 
         integrate_simps = integrate.simps(self.y, self.x)
         self.dax_artist, = self.dax.plot(self.t,R)
 
+        self.dax.plot([0.33,0.33],[0,1])
+
         dp_max_index = [i for i, x in enumerate(dp) if x == max(dp)]
         adp_max_index = [i for i, x in enumerate(adp) if x == max(adp)]
+
+        # circle
+        radius = 5.0
+        th = np.arange(0,0.5,0.01) * np.pi
+        cx = 10.0 - radius + radius * np.sin(th) 
+        cy = radius - radius * np.cos(th)
+        self.ax.plot(cx, cy)
+
 
     def change(self):
         self.x = (self.t**3)*self.p[3].x + 3*(self.t**2)*(1-self.t)*self.p[2].x + 3*self.t*((1-self.t)**2)*self.p[1].x + ((1-self.t)**3)*self.p[0].x
@@ -87,10 +97,14 @@ class Bezier():
 gco = None
 
 if __name__ == '__main__':
-    a = Coo(1,1)
-    b = Coo(10,1)
-    c = Coo(1,5)
-    d = Coo(10,5)
+    # a = Coo(1,1)
+    # b = Coo(10,1)
+    # c = Coo(1,5)
+    # d = Coo(10,5)
+    a = Coo(0, 0)
+    b = Coo(10.0, 0.0)
+    c = Coo(10.0, 0.0)
+    d = Coo(10.0, 10.0)
 
     B = Bezier(a,b,c,d)
 
