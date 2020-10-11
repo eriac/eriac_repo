@@ -22,22 +22,22 @@ def process(y,t,n,u,Kp,taup):
     return dydt
 
 # specify number of steps
-ns = 50
+ns = 100
 # define time points
-t = np.linspace(0,40,ns+1)
+t = np.linspace(0,10,ns+1)
 delta_t = t[1]-t[0]
 # define input vector
 u = np.zeros(ns+1)
-u[5:20] = 1.0
-u[20:30] = 0.1
-u[30:] = 0.5
+u[30:60] = 1.0
+u[60:80] = 0.1
+u[80:] = 0.5
 
 # use this function or replace yp with real process data
 def sim_process_data():
     # higher order process
     n=10       # order
     Kp=3.0    # gain
-    taup=5.0   # time constant
+    taup=1.0   # time constant
     # storage for predictions or data
     yp = np.zeros(ns+1)  # process
     for i in range(1,ns+1):

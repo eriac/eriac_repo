@@ -27,7 +27,7 @@ class Obstacle:
     def __init__(self):
         None
 
-    def checkClearLine(self, a, b):
+    def checkClearLine(self, a, b, clearance):
         resolution = 0.025
         dist = self.dist(a,b)
         num = int(dist / resolution)
@@ -36,14 +36,14 @@ class Obstacle:
         for i in range(num):
             px = a.x + vx * i / num
             py = a.y + vy * i / num
-            if not self.checkClearPoint(Node(px, py)):
+            if not self.checkClearPoint(Node(px, py), clearance):
                 return False
         return True
 
-    def checkClearPoint(self, a):
-        if 2.0 < a.x and a.x < 4.0 and -4.0 < a.y and a.y < 4.0:
+    def checkClearPoint(self, a, c):
+        if 2.5 - c < a.x and a.x < 3.5 + c and -3.5 - c < a.y and a.y < 3.5 + c:
             return False
-        elif 6.0 < a.x and a.x < 8.0 and 6.0 < a.y and a.y < 14.0:
+        elif 5.5 - c < a.x and a.x < 7.5 + c and 5.5 - c < a.y and a.y < 13.5 + c:
             return False
         else:
             return True
@@ -94,7 +94,7 @@ class RRT:
             rand_node.parent_id, dist = self.getNearest(rand_node)
             if dist < 0.1:
                 continue
-            if not obstacle.checkClearLine(self.nodes[rand_node.parent_id], rand_node):
+            if not obstacle.checkClearLine(self.nodes[rand_node.parent_id], rand_node, 0.5):
                 continue
 
 
@@ -184,10 +184,12 @@ class Smoother:
 
             if (i % 20) == 8:
                 first = path[0]
+                first.basepoint = 0
                 second = self.get_target_point(path, random.uniform(0, le))
             elif (i % 20) == 12:
                 first = self.get_target_point(path, random.uniform(0, le))
                 second = path[-1]
+                second.basepoint = len(path)-1
             else:
                 pickPoints = [random.uniform(0, le), random.uniform(0, le)]
                 pickPoints.sort()
@@ -204,7 +206,7 @@ class Smoother:
                 continue
 
             # collision check
-            if not obstacle.checkClearLine(first, second):
+            if not obstacle.checkClearLine(first, second, 0.5):
                 continue
 
             # print(i,first, second)
@@ -246,7 +248,7 @@ class PathSimplefy:
             for j in range(len(dist)):
                 min_index = dist.index(min(dist))
                 if 1 <= min_index < len(path)-1:
-                    if obstacle.checkClearLine(path[min_index-1], path[min_index+1]):
+                    if obstacle.checkClearLine(path[min_index-1], path[min_index+1], 0.5):
                         # print("min["+str(min_index)+"] "+str(dist[min_index]))
                         new_path = []
                         new_path.extend(path[:min_index])
@@ -281,6 +283,18 @@ if __name__ == '__main__':
     print ("elapsed_time:{0}".format(end_time-start_time) + "[sec]")
 
     print(simplify_path)
+
+    n1 = simplify_path[1]
+    n2 = simplify_path[2]
+    n3 = simplify_path[3]
+    r = 2.0
+    v1 = [n1.x - n2.x, n1.y - n2.y]
+    s1 = math.sqrt(v1[0]**2 + v1[1]**2)
+    v2 = [n3.x - n2.x, n3.y - n2.y]
+    s2 = math.sqrt(v2[0]**2 + v2[1]**2)
+    angle = math.acos((v1[0]*v2[0]+v1[1]*v2[1])/s1/s2)
+    print(angle)
+    l = r / math.cos(angle/2)
 
     p_x = []
     p_y = []
