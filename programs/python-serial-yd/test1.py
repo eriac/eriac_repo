@@ -4,7 +4,7 @@ import time
 
 ser = serial.Serial()
 #ser.port = '/dev/ydlidar'
-ser.port = '/dev/ttyUSB0'
+ser.port = '/dev/ttyUSB1'
 ser.baudrate = 9600
 ser.timeout = 0.1
 ser.open()

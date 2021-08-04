@@ -1,0 +1,18 @@
+# ex
+$CL,A,D,01,02,03,0102030405060708; CM
+
+$CL start(fix)
+A   channel
+D   data or rqauwst
+01  src
+02  target
+03  command
+01..08  data
+;   end(fix)
+CM  comment
+\n  NL essential
+
+class CANLinkConverter{
+    unsigned chat* encode(struct)
+    struct decode(unsigned chat*, int size)
+}
