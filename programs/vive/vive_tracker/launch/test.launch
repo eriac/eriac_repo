@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="target" default="local" />
+<!--
+  <param name="robot_description" type="str" textfile="$(find srs005_ros)/urdf/robot.urdf"/>
+-->
+
+  <machine name="local"  address="localhost" />
+  <machine name="remote3" address="remote3" env-loader="/home/pi/catkin_ws/devel/env.sh"  user="pi"  password="raspberry"/>
+  <machine name="OptiPlex-9010" address="OptiPlex-9010" env-loader="/home/erio/catkin_ws/devel/env.sh" user="erio" password="419000"/>
+
+  <env name="GAZEBO_MASTER_URI" value="http://192.168.2.71:11345" /> 
+
+<!--
+  <node machine="$(arg target)" name="rostopic" pkg="rostopic" type="rostopic" args="pub -r 1 /chatter std_msgs/String 'abcd'" />
+-->
+
+  <node machine="$(arg target)" name="gzserver" pkg="gazebo_ros" type="gzserver" args="-e ode worlds/empty.world"/>
+
+<!--
+  <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient"/>
+-->
+
+</launch>
+
