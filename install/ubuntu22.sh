@@ -26,12 +26,29 @@ sudo apt upgrade -y
 sudo apt install -y ros-humble-desktop
 
 # ROS2-gazebo
-sudo apt install ros-humble-gazebo-ros-pkgs
+sudo apt install -y ros-humble-gazebo-ros-pkgs
 
 # ROS2-catkin
-sudo apt install python3-colcon-common-extensions
+sudo apt install -y python3-colcon-common-extensions
 
 # ROS2-rosdep
-sudo apt install python3-rosdep2
+sudo apt install -y python3-rosdep2
 sudo rosdep init
 rosdep update
+
+# special handling mavros
+sudo apt install -y ros-humble-mavros
+cd /opt/ros/humble/lib/mavros
+sudo ./install_geographiclib_datasets.sh
+
+# special handling ydlidar-SDK
+cd /tmp
+git clone https://github.com/YDLIDAR/YDLidar-SDK
+mkdir -p YDLidar-SDK/build
+cd YDLidar-SDK/build
+cmake .. 
+make 
+sudo make install
+
+# device related
+sudo usermod -aG dialout $USER
