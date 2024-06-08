@@ -1,0 +1,137 @@
+
+sudo apt update && sudo apt install ffmpeg
+
+sudo apt-get install portaudio19-dev
+pip install pyaudio
+
+# install pvporcupine
+pip install pvporcupine
+
+
+$ pip install pvporcupinedemo
+
+porcupine_demo_mic --access_key アクセスキー --keywords picovoice
+
+https://www.sato-susumu.com/entry/2023/02/09/204605
+
+~/.local/bin/porcupine_demo_mic  --access_key $PICOVOICE_API_KEY --keywords alexa --audio_device_index 3
+~/.local/bin/porcupine_demo_mic  --access_key $PICOVOICE_API_KEY --keyword_path ~/robot_en_linux_v3_0_0.ppn --audio_device_index 4
+
+
+
+https://www.techlife-hacking.com/?p=1627#
+
+
+AWS rekognition
+
+https://qiita.com/banquet_kuma/items/560787299b83fb924ff7
+
+
+Detected labels for indoor_image.jpg
+
+Label: Indoors
+Confidence: 100.0
+Instances:
+Label: Interior Design
+Confidence: 100.0
+Instances:
+Label: Wood
+Confidence: 99.95042419433594
+Instances:
+Label: Electronics
+Confidence: 99.7977523803711
+Instances:
+Label: Screen
+Confidence: 99.7977523803711
+Instances:
+Label: Computer Hardware
+Confidence: 99.66851043701172
+Instances:
+Label: Hardware
+Confidence: 99.66851043701172
+Instances:
+Label: Monitor
+Confidence: 99.66851043701172
+Instances:
+  Bounding box
+    Top: 0.48497188091278076
+    Left: 0.335898756980896
+    Width: 0.15577058494091034
+    Height: 0.15342897176742554
+  Confidence: 84.9772720336914
+
+Parents:
+   Computer Hardware
+   Electronics
+   Hardware
+   Screen
+----------
+
+Label: Hardwood
+Confidence: 99.18216705322266
+Instances:
+Label: Architecture
+Confidence: 97.91826629638672
+Instances:
+Label: Building
+Confidence: 97.91826629638672
+Instances:
+Label: Furniture
+Confidence: 97.91826629638672
+Instances:
+Label: Living Room
+Confidence: 97.91826629638672
+Instances:
+Label: Room
+Confidence: 97.91826629638672
+Instances:
+Label: TV
+Confidence: 97.79144287109375
+Instances:
+Label: Home Decor
+Confidence: 97.71283721923828
+Instances:
+Label: Floor
+Confidence: 94.51512908935547
+Instances:
+Label: Flooring
+Confidence: 94.51512908935547
+Instances:
+Label: Wood Panels
+Confidence: 82.36295318603516
+Instances:
+Label: Fireplace
+Confidence: 81.34529113769531
+Instances:
+Label: Plant
+Confidence: 66.61083984375
+Instances:
+  Bounding box
+    Top: 0.3023734986782074
+    Left: 0.3118741512298584
+    Width: 0.051505640149116516
+    Height: 0.07309013605117798
+  Confidence: 66.61083984375
+
+Parents:
+----------
+
+Label: Stained Wood
+Confidence: 62.4316520690918
+Instances:
+Label: Corner
+Confidence: 60.75739288330078
+Instances:
+Label: Kitchen
+Confidence: 57.42325210571289
+Instances:
+Label: Table
+Confidence: 56.3804817199707
+Instances:
+Label: Cabinet
+Confidence: 56.2713623046875
+Instances:
+Label: Housing
+Confidence: 56.042076110839844
+Instances:
+

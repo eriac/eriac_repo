@@ -1,0 +1,59 @@
+Detected labels for baby.jpg
+
+Label: Crib
+Confidence: 99.59603118896484
+Instances:
+#########
+Label: Furniture
+Confidence: 99.59603118896484
+Instances:
+#########
+Label: Infant Bed
+Confidence: 99.59603118896484
+Instances:
+#########
+Label: Baby
+Confidence: 98.48937225341797
+Instances:
+  Bounding box
+    Top: 0.26305150985717773
+    Left: 0.17130856215953827
+    Width: 0.779136061668396
+    Height: 0.4580226242542267
+  Confidence: 98.48937225341797
+
+Parents:
+   Person
+----------
+#########
+Label: Person
+Confidence: 98.48937225341797
+Instances:
+  Bounding box
+    Top: 0.26305150985717773
+    Left: 0.17130856215953827
+    Width: 0.779136061668396
+    Height: 0.4580226242542267
+  Confidence: 98.48937225341797
+
+Parents:
+----------
+#########
+Label: Clothing
+Confidence: 94.43777465820312
+Instances:
+#########
+Label: Glove
+Confidence: 94.43777465820312
+Instances:
+  Bounding box
+    Top: 0.23779018223285675
+    Left: 0.8001073598861694
+    Width: 0.0834018737077713
+    Height: 0.12494345754384995
+  Confidence: 94.43777465820312
+
+Parents:
+   Clothing
+----------
+#########

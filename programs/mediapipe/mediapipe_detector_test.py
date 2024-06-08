@@ -40,12 +40,17 @@ def visualize(image, detection_result) -> np.ndarray:
 
   return image
 
-base_options = python.BaseOptions(model_asset_path='efficientdet.tflite')
+base_options = python.BaseOptions(model_asset_path='efficientdet_lite2.tflite')
 options = vision.ObjectDetectorOptions(base_options=base_options,
                                        score_threshold=0.5)
 detector = vision.ObjectDetector.create_from_options(options)
 
 cap = cv2.VideoCapture(0)   # カメラのID指定
+cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+cap.set(cv2.CAP_PROP_FPS, 15)           # カメラFPSを60FPSに設定
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640) # カメラ画像の横幅を1280に設定
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480) # カメラ画像の縦幅を720に設定
+
 if cap.isOpened():
     while True:
         # カメラから画像取得
