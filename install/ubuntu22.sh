@@ -52,3 +52,28 @@ sudo make install
 
 # device related
 sudo usermod -aG dialout $USER
+
+# vscode
+sudo apt install -y gpg apt-transport-https
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+rm -f packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+cat /etc/apt/sources.list.d/vscode.list
+deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main
+sudo apt update -y
+sudo apt install -y code
+
+# chrome
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrom-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/googlechrom-keyring.gpg
+sudo apt update
+sudo apt install google-chrome-stable
+
+# flutter
+sudo snap install flutter --classic
+flutter doctor
+
+# ssh-key
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
