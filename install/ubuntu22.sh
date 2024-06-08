@@ -23,4 +23,15 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 sudo apt update -y
 sudo apt upgrade -y
 
-sudo apt install ros-humble-desktop -y
+sudo apt install -y ros-humble-desktop
+
+# ROS2-gazebo
+sudo apt install ros-humble-gazebo-ros-pkgs
+
+# ROS2-catkin
+sudo apt install python3-colcon-common-extensions
+
+# ROS2-rosdep
+sudo apt install python3-rosdep2
+sudo rosdep init
+rosdep update
