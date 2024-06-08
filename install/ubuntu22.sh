@@ -5,7 +5,7 @@ echo "start install"
 # basic 
 sudo apt update -y
 sudo apt dist-upgrade -y
-sudo apt install -y git vim 
+sudo apt install -y git vim htop
 
 # ROS2-desktop
 sudo apt install -y locales
@@ -75,5 +75,5 @@ sudo snap install flutter --classic
 flutter doctor
 
 # ssh-key
-ssh-keygen
+ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ""
 cat ~/.ssh/id_rsa.pub
