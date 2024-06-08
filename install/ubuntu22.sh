@@ -6,6 +6,8 @@ echo "start install"
 sudo apt update -y
 sudo apt dist-upgrade -y
 sudo apt install -y git vim htop
+git config --global user.email "project@srs"
+git config --global user.name "project-srs"
 
 # ROS2-desktop
 sudo apt install -y locales
